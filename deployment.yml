@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dailyjournal-deployment
+spec:
+  replicas: 2  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: dailyjournal
+  template:
+    metadata:
+      labels:
+        app: dailyjournal
+    spec:
+      containers:
+        - name: dailyjournal-container
+          image: rameshkumarverma/dailyjournal-app:latest  # Replace with your Docker image details
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
